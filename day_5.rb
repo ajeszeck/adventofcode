@@ -23,7 +23,7 @@ def convert_input(file_name)
   input
 end
 
-input = convert_input("example5.txt")
+input = convert_input("5.txt")
 
 
 def escape_maze(input)
@@ -35,25 +35,25 @@ def escape_maze(input)
     if input[current_index] == 0
       previous_index = current_index
       current_index += input[previous_index]
-      input[previous_index] += 1
+      if input[previous_index] >= 3
+        input[previous_index] -= 1
+      else
+        input[previous_index] += 1
+      end
     else
       previous_index = current_index
       if input[previous_index] == nil
         return "step count: #{step_count}"
       else
         current_index += input[previous_index]
-        input[previous_index] += 1
+        if input[previous_index] >= 3
+          input[previous_index] -= 1
+        else
+          input[previous_index] += 1
+        end
       end
     end
     step_count += 1
-    p "INPUT[0] = #{input[0]}"
-    p "INPUT[1] = #{input[1]}"
-    p "INPUT[2] = #{input[2]}"
-    p "INPUT[3] = #{input[3]}"
-    p "INPUT[4] = #{input[4]}"
-
-    p "step count is #{step_count}"
-    p "*" * 50
   end
   p "step count: #{step_count}"
 end
